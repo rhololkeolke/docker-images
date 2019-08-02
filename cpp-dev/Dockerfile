@@ -3,6 +3,8 @@ LABEL name="cpp-dev"
 LABEL version="master"
 LABEL maintainer="digidevin@gmail.com"
 
+ARG NPROC=$(nproc)
+
 RUN apt-get update && \
 	DEBIAN_FRONTEND=noninteractive apt-get install -qy build-essential \
 	ca-certificates \
@@ -53,7 +55,7 @@ RUN wget https://cmake.org/files/v3.15/cmake-3.15.1.tar.gz -O cmake.tar.gz && \
 	mv cmake-3.15.1 cmake && \
 	cd cmake && \
 	./bootstrap && \
-	make -j && \
+	make -j${NPROC} && \
 	make install && \
 	cd .. && \
 	rm -rf cmake
