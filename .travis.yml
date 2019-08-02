@@ -10,7 +10,8 @@ services:
 script:
 - export TAG_CPP_DEV=rhololkeolke/cpp-dev:$TRAVIS_COMMIT
 - docker run -it --rm -v "$(pwd)/cpp-dev/Dockerfile:/Dockerfile:ro" redcoolbeans/dockerlint
-- docker build ./cpp-dev -t $TAG_CPP_DEV
+# Without NPROC=1 travis VM can run out memory building CMake
+- docker build ./cpp-dev -t $TAG_CPP_DEV --build-arg NPROC=1
 after_success:
 - export CONAN_VERSION=$(conan --version | awk '{print $3}')
 - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
