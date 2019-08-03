@@ -1,9 +1,7 @@
 env:
-  matrix:
   global:
-    DOCKER_USER: rhololkeolke
-    DOCKER_EMAIL: digidevin@gmail.com
-    secure: d4lw/g9bVPdAmGvxXFhQ+r5ukpFdPHEiqgJCwth6Cx/fa6FKweA521G3lYtAHRKc7B2FcR5xx1J1KxTJKliZTFd5u2Z3V+xpVsqLA1szUE2BFH1xysR2Gd7Mi0QWbPnW1rcqVsX5eRCijP+PqKGRsdRwflkBP4XDTt8Jg6vEmyJSx/hHRotZi5PqiGU/bAwm9dw4TNQijEedmQ1M68+U4t8mpOSaTPgqXepcDVJhrrioSnyojtuRd5k3qH1eIW5udfjFjT09XLi3272Gz4pQ1xha/s2AuBjeXe9Q+1EqXcApUevOz154eCOQVFM+MNU0Fg+TmqScXP+P/pobth43qo4LFpUThfIzKmAs5dWSmmDrdqK4XsXUbcUzZK1DBiHb5tF68qI3oREMUVd45kjA8dz1SF5tZzd/7FxJDmybFTB3bpWnPwk/KFumshLMZpbzT8xbUu2t148GOpUeXzIU6FV6It8pbG0frsZZcrXrpxFU4EdlAmIt9qquQJfOjTNwaGpQXqe5BGQVeMtYAyzsVts4uCx+XgcGnc+6ceirl+ZA4V2kO1iMwLpOSvM3tHc6e0Khsjy3sxpokKEfrojeFp+omlGFWqUZ6M41go9udrj34FXqn16EXRchCs4+hA9sqJHvhhvk57AyB5PltH8KeLswkliKUewpocw9MHTXtRY=
+    - DOCKER_USER: rhololkeolke
+    - secure: d4lw/g9bVPdAmGvxXFhQ+r5ukpFdPHEiqgJCwth6Cx/fa6FKweA521G3lYtAHRKc7B2FcR5xx1J1KxTJKliZTFd5u2Z3V+xpVsqLA1szUE2BFH1xysR2Gd7Mi0QWbPnW1rcqVsX5eRCijP+PqKGRsdRwflkBP4XDTt8Jg6vEmyJSx/hHRotZi5PqiGU/bAwm9dw4TNQijEedmQ1M68+U4t8mpOSaTPgqXepcDVJhrrioSnyojtuRd5k3qH1eIW5udfjFjT09XLi3272Gz4pQ1xha/s2AuBjeXe9Q+1EqXcApUevOz154eCOQVFM+MNU0Fg+TmqScXP+P/pobth43qo4LFpUThfIzKmAs5dWSmmDrdqK4XsXUbcUzZK1DBiHb5tF68qI3oREMUVd45kjA8dz1SF5tZzd/7FxJDmybFTB3bpWnPwk/KFumshLMZpbzT8xbUu2t148GOpUeXzIU6FV6It8pbG0frsZZcrXrpxFU4EdlAmIt9qquQJfOjTNwaGpQXqe5BGQVeMtYAyzsVts4uCx+XgcGnc+6ceirl+ZA4V2kO1iMwLpOSvM3tHc6e0Khsjy3sxpokKEfrojeFp+omlGFWqUZ6M41go9udrj34FXqn16EXRchCs4+hA9sqJHvhhvk57AyB5PltH8KeLswkliKUewpocw9MHTXtRY=
 sudo: required
 services:
 - docker
@@ -14,7 +12,7 @@ script:
 - docker build ./cpp-dev -t $TAG_CPP_DEV --build-arg NPROC=1
 after_success:
 - export CONAN_VERSION=$(conan --version | awk '{print $3}')
-- docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+- docker login -u $DOCKER_USER -p $DOCKER_PASS
 - docker tag $TAG_CPP_DEV rhololkeolke/cpp-dev:cmake-3.15.1
 - docker tag $TAG_CPP_DEV rhololkeolke/cpp-dev:ninja-1.9.0
 - docker tag $TAG_CPP_DEV rhololkeolke/cpp-dev:python-3.7.4
