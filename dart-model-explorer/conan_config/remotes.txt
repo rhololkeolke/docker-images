@@ -1,0 +1,8 @@
+bincrafters https://api.bintray.com/conan/bincrafters/public-conan True
+catchorg https://api.bintray.com/conan/catchorg/Catch2 True
+cliutils https://api.bintray.com/conan/cliutils/CLI11 True
+conan-community https://api.bintray.com/conan/conan-community/conan True
+outcome https://api.bintray.com/conan/ned14/Outcome True
+rhol https://api.bintray.com/conan/rhololkeolke/public-conan True
+trompeloeil https://api.bintray.com/conan/trompeloeil/trompeloeil True
+type_safe https://api.bintray.com/conan/manu343726/conan-packages True
