@@ -32,6 +32,8 @@ jobs:
         - docker tag $TAG_DART_MODEL_EXPLORER rhololkeolke/dart-model-explorer:latest
         - test $TRAVIS_BRANCH = "master" && docker push rhololkeolke/dart-model-explorer
 stages:
-  - cpp-dev
-  - dart-model-explorer
+  - name: cpp-dev
+    if: branch == master OR branch == cpp-dev
+  - name: dart-model-explorer
+    if: branch == master OR branch == dart-model-explorer
 
