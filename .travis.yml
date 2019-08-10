@@ -5,35 +5,11 @@ env:
 sudo: required
 services:
 - docker
-jobs:
-  include:
-    - stage: cpp-dev
-      script:
-        - export TAG_CPP_DEV=rhololkeolke/cpp-dev:$TRAVIS_COMMIT
-        - docker run -it --rm -v "$(pwd)/cpp-dev/Dockerfile:/Dockerfile:ro" redcoolbeans/dockerlint
-        # Without NPROC=1 travis VM can run out memory building CMake
-        - docker build ./cpp-dev -t $TAG_CPP_DEV --build-arg NPROC=1
-      after_success:
-        - export CONAN_VERSION=$(conan --version | awk '{print $3}')
-        - docker login -u $DOCKER_USER -p $DOCKER_PASS
-        - docker tag $TAG_CPP_DEV rhololkeolke/cpp-dev:cmake-3.15.1
-        - docker tag $TAG_CPP_DEV rhololkeolke/cpp-dev:ninja-1.9.0
-        - docker tag $TAG_CPP_DEV rhololkeolke/cpp-dev:python-3.7.4
-        - docker tag $TAG_CPP_DEV rhololkeolke/cpp-dev:conan-$CONAN_VERSION
-        - docker tag $TAG_CPP_DEV rhololkeolke/cpp-dev:latest
-        - test $TRAVIS_BRANCH = "master" && docker push rhololkeolke/cpp-dev
-    - stage: dart-model-explorer
-      script:
-        - export TAG_DART_MODEL_EXPLORER=rhololkeolke/dart-model-explorer:$TRAVIS_COMMIT
-        - docker run -it --rm -v "$(pwd)/dart-model-explorer:/Dockerfile:ro" redcoolsbeans/dockerlint
-        - docker build ./dart-model-explorer -t $TAG_DART_MODEL_EXPLORER
-      after_success:
-        - docker login -u $DOCKER_USER -p $DOCKER_PASS
-        - docker tag $TAG_DART_MODEL_EXPLORER rhololkeolke/dart-model-explorer:latest
-        - test $TRAVIS_BRANCH = "master" && docker push rhololkeolke/dart-model-explorer
-stages:
-  - name: cpp-dev
-    if: branch == master OR branch == cpp-dev
-  - name: dart-model-explorer
-    if: branch == master OR branch == dart-model-explorer
-
+script:
+  - export TAG_DART_MODEL_EXPLORER=rhololkeolke/dart-model-explorer:$TRAVIS_COMMIT
+  - docker run -it --rm -v "$(pwd)/dart-model-explorer:/Dockerfile:ro" redcoolsbeans/dockerlint
+  - docker build ./dart-model-explorer -t $TAG_DART_MODEL_EXPLORER
+after_success:
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+  - docker tag $TAG_DART_MODEL_EXPLORER rhololkeolke/dart-model-explorer:latest
+  - test $TRAVIS_BRANCH = "master" && docker push rhololkeolke/dart-model-explorer
