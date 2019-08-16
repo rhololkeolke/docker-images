@@ -8,8 +8,13 @@ COPY conanfile.txt conanfile.txt
 
 # conan system requirements uses sudo
 RUN sudo apt-get update && \
-	sudo apt-get install -y toilet libsdl2-dev libglfw3-dev libopenal-dev ninja-build && \
-        sudo apt-get clean
+	sudo apt-get install -y toilet libsdl2-dev libglfw3-dev libopenal-dev ninja-build cowsay && \
+	sudo apt-get clean
+RUN git clone https://github.com/possatti/pokemonsay && \
+	cd pokemonsay && \
+	./install.sh && \
+	cd .. && \
+        rm -rf pokemonsay
 RUN conan config install conan_config
 RUN conan install --build=outdated conanfile.txt
 
