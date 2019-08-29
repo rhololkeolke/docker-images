@@ -3,7 +3,7 @@ abseil/20190128@conan/testing
 better-enums/0.11.2@rhololkeolke/stable
 Catch2/2.9.1@catchorg/stable
 CLI11/1.8.0@cliutils/stable
-dart/6.9.1@rhololkeolke/stable
+dart/6.9.2@rhololkeolke/stable
 eigen/3.3.7@conan/stable
 json-schema-validator/2.0.0@rhololkeolke/stable
 jsonformoderncpp/3.7.0@vthiery/stable
@@ -13,7 +13,8 @@ magnum-plugins/2019.01@rhololkeolke/stable
 Outcome/master@ned14/stable
 pugixml/1.9@bincrafters/stable
 rang/3.1.0@rang/stable
-rapidcheck/20190802@rhololkeolke/stable
+range-v3/0.5.0@ericniebler/stable
+rapidcheck/20190829@rhololkeolke/stable
 spdlog/1.3.1@bincrafters/stable
 trompeloeil/v34@rollbear/stable
 type_safe/0.3@Manu343726/testing
@@ -23,6 +24,8 @@ cmake
 
 [options]
 corrade:with_rc=True
+dart:build_dartpy=True
+dart:python_version=3.7
 magnum:with_sdl2application=False
 magnum:with_glfwapplication=True
 magnum:with_tgaimporter=True

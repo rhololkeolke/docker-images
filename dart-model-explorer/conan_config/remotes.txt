@@ -4,6 +4,7 @@ cliutils https://api.bintray.com/conan/cliutils/CLI11 True
 conan-community https://api.bintray.com/conan/conan-community/conan True
 outcome https://api.bintray.com/conan/ned14/Outcome True
 rang https://api.bintray.com/conan/agauniyal/rang True
+range-v3 https://api.bintray.com/conan/range-v3/range-v3 True
 rhol https://api.bintray.com/conan/rhololkeolke/public-conan True
 trompeloeil https://api.bintray.com/conan/trompeloeil/trompeloeil True
 type_safe https://api.bintray.com/conan/manu343726/conan-packages True
