@@ -7,6 +7,7 @@ dart/6.9.2@rhololkeolke/stable
 eigen/3.3.7@conan/stable
 json-schema-validator/2.0.0@rhololkeolke/stable
 jsonformoderncpp/3.7.0@vthiery/stable
+jsonnet/20190830@rhololkeolke/stable
 magnum/2019.01@rhololkeolke/stable
 magnum-integration/2019.01@rhololkeolke/stable
 magnum-plugins/2019.01@rhololkeolke/stable
@@ -21,6 +22,7 @@ type_safe/0.3@Manu343726/testing
 
 [generators]
 cmake
+virtualenv
 
 [options]
 corrade:with_rc=True
