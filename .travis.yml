@@ -21,7 +21,7 @@ jobs:
         - export TAG_CLANG8=rhololkeolke/clang8:$TRAVIS_COMMIT
         - docker build ./clang8 -t $TAG_CLANG8
       after_success:
-        - docker tag $TAG_CLANG8 rhololkeolke/clang8:$TRAVIS_COMMIT
+        - docker tag $TAG_CLANG8 rhololkeolke/clang8:latest
         - test $TRAVIS_BRANCH = "master" && docker push rhololkeolke/clang8
     - stage: conan-images
       before_script:
@@ -30,7 +30,7 @@ jobs:
         - export TAG_CLANG7=rhololkeolke/clang7:$TRAVIS_COMMIT
         - docker build ./clang7 -t $TAG_CLANG7
       after_success:
-        - docker tag $TAG_CLANG7 rhololkeolke/clang7:$TRAVIS_COMMIT
+        - docker tag $TAG_CLANG7 rhololkeolke/clang7:latest
         - test $TRAVIS_BRANCH = "master" && docker push rhololkeolke/clang7
     - stage: conan-images
       before_script:
@@ -39,7 +39,7 @@ jobs:
         - export TAG_GCC8=rhololkeolke/gcc8:$TRAVIS_COMMIT
         - docker build ./gcc8 -t $TAG_GCC8
       after_success:
-        - docker tag $TAG_GCC8 rhololkeolke/gcc8:$TRAVIS_COMMIT
+        - docker tag $TAG_GCC8 rhololkeolke/gcc8:latest
         - test $TRAVIS_BRANCH = "master" && docker push rhololkeolke/gcc8
     - stage: conan-images
       before_script:
@@ -48,7 +48,7 @@ jobs:
         - export TAG_GCC9=rhololkeolke/gcc9:$TRAVIS_COMMIT
         - docker build ./gcc9 -t $TAG_GCC9
       after_success:
-        - docker tag $TAG_GCC9 rhololkeolke/gcc9:$TRAVIS_COMMIT
+        - docker tag $TAG_GCC9 rhololkeolke/gcc9:latest
         - test $TRAVIS_BRANCH = "master" && docker push rhololkeolke/gcc9
 
     - stage: dart-model-explorer
