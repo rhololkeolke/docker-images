@@ -9,11 +9,54 @@ before_install:
   - echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
 install:
   - docker pull redcoolbeans/dockerlint
-before_script:
-  - docker run -it --rm -v "$(pwd)/dart-model-explorer/Dockerfile:/Dockerfile:ro" redcoolbeans/dockerlint
-script:
-  - export TAG_DART_MODEL_EXPLORER=rhololkeolke/dart-model-explorer:$TRAVIS_COMMIT
-  - docker build ./dart-model-explorer -t $TAG_DART_MODEL_EXPLORER
-after_success:
-  - docker tag $TAG_DART_MODEL_EXPLORER rhololkeolke/dart-model-explorer:latest
-  - test $TRAVIS_BRANCH = "master" && docker push rhololkeolke/dart-model-explorer
+stages:
+  - conan-images
+  - dart-model-explorer
+jobs:
+  include:
+    - stage: conan-images
+      before_script:
+        - docker run -it --rm -v "$(pwd)/clang8/Dockerfile:/Dockerfile:ro" redcoolbeans/dockerlint
+      script:
+        - export TAG_CLANG8=rhololkeolke/clang8:$TRAVIS_COMMIT
+        - docker build ./clang8 -t $TAG_CLANG8
+      after_success:
+        - docker tag $TAG_CLANG8 rhololkeolke/clang8:$TRAVIS_COMMIT
+        - test $TRAVIS_BRANCH = "master" && docker push rhololkeolke/clang8
+    - stage: conan-images
+      before_script:
+        - docker run -it --rm -v "$(pwd)/clang7/Dockerfile:/Dockerfile:ro" redcoolbeans/dockerlint
+      script:
+        - export TAG_CLANG7=rhololkeolke/clang7:$TRAVIS_COMMIT
+        - docker build ./clang7 -t $TAG_CLANG7
+      after_success:
+        - docker tag $TAG_CLANG7 rhololkeolke/clang7:$TRAVIS_COMMIT
+        - test $TRAVIS_BRANCH = "master" && docker push rhololkeolke/clang7
+    - stage: conan-images
+      before_script:
+        - docker run -it --rm -v "$(pwd)/gcc8/Dockerfile:/Dockerfile:ro" redcoolbeans/dockerlint
+      script:
+        - export TAG_GCC8=rhololkeolke/gcc8:$TRAVIS_COMMIT
+        - docker build ./gcc8 -t $TAG_GCC8
+      after_success:
+        - docker tag $TAG_GCC8 rhololkeolke/gcc8:$TRAVIS_COMMIT
+        - test $TRAVIS_BRANCH = "master" && docker push rhololkeolke/gcc8
+    - stage: conan-images
+      before_script:
+        - docker run -it --rm -v "$(pwd)/gcc9/Dockerfile:/Dockerfile:ro" redcoolbeans/dockerlint
+      script:
+        - export TAG_GCC9=rhololkeolke/gcc9:$TRAVIS_COMMIT
+        - docker build ./gcc9 -t $TAG_GCC9
+      after_success:
+        - docker tag $TAG_GCC9 rhololkeolke/gcc9:$TRAVIS_COMMIT
+        - test $TRAVIS_BRANCH = "master" && docker push rhololkeolke/gcc9
+
+    - stage: dart-model-explorer
+      before_script:
+        - docker run -it --rm -v "$(pwd)/dart-model-explorer/Dockerfile:/Dockerfile:ro" redcoolbeans/dockerlint
+      script:
+        - export TAG_DART_MODEL_EXPLORER=rhololkeolke/dart-model-explorer:$TRAVIS_COMMIT
+        - docker build ./dart-model-explorer -t $TAG_DART_MODEL_EXPLORER
+      after_success:
+        - docker tag $TAG_DART_MODEL_EXPLORER rhololkeolke/dart-model-explorer:latest
+        - test $TRAVIS_BRANCH = "master" && docker push rhololkeolke/dart-model-explorer
