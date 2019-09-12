@@ -1,5 +1,6 @@
 [requires]
 abseil/20190829@rhololkeolke/stable
+assimp/5.0.0.rc2@rhololkeolke/stable
 better-enums/0.11.2@rhololkeolke/stable
 Catch2/2.9.1@catchorg/stable
 CLI11/1.8.0@cliutils/stable
@@ -11,6 +12,7 @@ jsonnet/20190830@rhololkeolke/stable
 magnum/2019.01@rhololkeolke/stable
 magnum-integration/2019.01@rhololkeolke/stable
 magnum-plugins/2019.01@rhololkeolke/stable
+nativefiledialog/114@rhololkeolke/stable
 Outcome/master@ned14/stable
 pugixml/1.9@bincrafters/stable
 rang/3.1.0@rang/stable
