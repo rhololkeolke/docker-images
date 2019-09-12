@@ -1,4 +1,4 @@
-FROM conanio/clang8
+FROM rhololkeolke/clang8
 LABEL name="dart-model-explorer"
 LABEL version="master"
 LABEL maintainer="dschwab@andrew.cmu.edu"
