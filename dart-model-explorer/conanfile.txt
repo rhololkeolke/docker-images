@@ -9,9 +9,9 @@ eigen/3.3.7@conan/stable
 json-schema-validator/2.0.0@rhololkeolke/stable
 jsonformoderncpp/3.7.0@vthiery/stable
 jsonnet/20190830@rhololkeolke/stable
-magnum/2019.01@rhololkeolke/stable
-magnum-integration/2019.01@rhololkeolke/stable
-magnum-plugins/2019.01@rhololkeolke/stable
+magnum/2019.01.20190921@rhololkeolke/stable
+magnum-integration/2019.01.20190921@rhololkeolke/stable
+magnum-plugins/2019.01.20190921@rhololkeolke/stable
 nativefiledialog/114@rhololkeolke/stable
 Outcome/master@ned14/stable
 pugixml/1.9@bincrafters/stable
@@ -36,5 +36,7 @@ magnum:with_tgaimporter=True
 magnum:with_anysceneimporter=True
 magnum:with_meshtools=True
 magnum-integration:with_imgui=True
+magnum-integration:with_eigen=True
+magnum-plugins:build_plugins_static=True
 magnum-plugins:with_assimpimporter=True
 magnum-plugins:with_freetypefont=True
